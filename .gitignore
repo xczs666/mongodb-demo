@@ -25,6 +25,7 @@
 hs_err_pid*
 
 .idea
+.DS_Store
 mongodb-demo.iml
 
 target
