@@ -1,0 +1,19 @@
+spring:
+  #数据源配置
+  data:
+    mongodb:
+#      # 主机地址
+#      host: 101.37.34.177
+#      # 默认端口是27017
+#      port: 27017
+#      # 数据库
+#      database: xczdb
+#      #也可以使用uri连接
+#      username: xcz
+#      password: 123456
+      uri: mongodb://xcz:123456@mongodb:27017/xczdb?authMechanism=SCRAM-SHA-1
+      auto-index-creation: true
+
+logging:
+  level:
+    org.springframework.data.mongodb.core: DEBUG

@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  mongodb:
+    image: mongo
+    expose:
+      - 27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=xcz
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+      - MONGO_INITDB_DATABASE=xczdb
+    command:
+      --wiredTigerCacheSizeGB 0.5
+
+  mongodb-demo:
+    build:
+      context: .
+      dockerfile: src/docker/Dockerfile
+      args:
+        JAR_FILE: mongodb-demo-1.0.0-SNAPSHOT.jar
+    image: jenkinxu/mongodb-demo:1.0.0-SNAPSHOT
+    container_name: mongodb-demo
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+    environment:
+      WAIT_HOSTS: mongodb:27017
+      WAIT_TIMEOUT: 10
+      WAIT_HOST_CONNECT_TIMEOUT: 5
